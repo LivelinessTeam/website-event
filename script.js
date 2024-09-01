@@ -176,7 +176,7 @@ $(document).ready(function () {
             } else {
                 priceElement.textContent = `${eventData.data.priceCurrency} ${eventData.data.price}`;
             }
-            document.getElementById("events-remaining-seats").textContent = `${eventData.data.participantsLimit - eventData.data.participants.length} spots left`;
+            document.getElementById("events-remaining-seats").textContent = `${eventData.data.participants.length} going`;
             const imageUrl = eventData.data.creator.mainProfilePhoto;
             document.getElementById("event-host-image").src = imageUrl;
             const imageUrlCover = eventData.data.coverPhotoUrl;

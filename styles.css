@@ -388,7 +388,7 @@ div.content.shimmer-effect {
     flex-direction: row;
     gap: 12px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
