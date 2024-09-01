@@ -169,6 +169,7 @@ $(document).ready(function () {
             document.getElementById("event-creator-name").textContent = eventData.data.creator.name;
             document.getElementById("event-description").textContent = eventData.data.description;
             document.getElementById("get-app").setAttribute("href", eventData.data.link);
+            document.getElementById("attend-btn").setAttribute("href", eventData.data.link);
             const priceElement = document.getElementById("event-price");
             if (eventData.data.price === 0) {
                 priceElement.textContent = "Free";
