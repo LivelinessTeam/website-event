@@ -388,7 +388,7 @@ div.content.shimmer-effect {
     flex-direction: row;
     gap: 12px;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
 }
 
@@ -441,7 +441,7 @@ a[href^="https://maps.google.com/maps"] {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    width: 20%;
+    width: 21%;
 }
 
 .attendees-card h3 {
