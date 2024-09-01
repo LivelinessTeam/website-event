@@ -1,6 +1,6 @@
 body {
     max-width: 767px;
-    background-color: #141318;
+    background-color: #000000;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -21,48 +21,94 @@ a {
     text-decoration: none;
 }
 
-.hidden {
-    display: none;
+.shimmer-effect {
+    background: linear-gradient(90deg, #cecece 25%, #e0e0e0 50%, #cecece 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
 }
 
-#loader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.spinner {
-    border: 10px solid #f3f3f3;
-    border-top: 10px solid #3498db;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
+@keyframes shimmer {
     0% {
-        transform: rotate(0deg);
+        background-position: -200% 0;
     }
 
     100% {
-        transform: rotate(360deg);
+        background-position: 200% 0;
     }
 }
 
+/* .blur-container {
+    padding: 16px;
+    position: relative;
+    overflow-y: visible;
+}
+
+.blur-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -70px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.6;
+    background-image: var(--blurred-background);
+}
+
+#image-container.content {
+    z-index: 1;
+} */
+
+#image-container.content.shimmer-effect {
+    width: 100%;
+    height: 320px;
+}
+
+#event-payment .content {
+    height: 20px;
+}
+
+#total-attendees.content.shimmer-effect {
+    width: 20%;
+    margin: 0;
+}
+
+#reviews-carousel .swiper-slide.content.shimmer-effect {
+    width: 90%;
+}
+
+.attend-info.content.shimmer-effect {
+    height: 20px;
+    width: 20%;
+}
+
+h2.shimmer-effect,
+h3.shimmer-effect,
+p.shimmer-effect,
+span.shimmer-effect {
+    width: 100%;
+    height: 20px;
+    display: inline-block;
+}
+
+h2.content.shimmer-effect,
+h3.content.shimmer-effect,
+p.content.shimmer-effect,
+div.content.shimmer-effect {
+    margin-bottom: 10px;
+}
+
 .header {
-    padding: 25px 20px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #43404F;
+    background-color: #26242E;
 }
 
 .sticky {
@@ -79,11 +125,14 @@ a {
     font-weight: 600;
 }
 
-.header button {
+.header .getApp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
-    font-style: 600;
-    border: 1px solid #2F2D36;
-    background-color: #141318;
+    font-weight: 600;
+    border: 1px solid #43404F;
+    background-color: transparent;
     color: #fff;
     width: 87px;
     height: 40px;
@@ -102,7 +151,7 @@ a {
 }
 
 .event-info {
-    padding: 10px 15px;
+    padding: 16px;
 }
 
 /* #main-carousel .owl-stage-outer {
@@ -124,7 +173,7 @@ a {
 }
 
 .event-review span {
-    color: #00EA4B;
+    color: #DAFF00;
 }
 
 .event-review {
@@ -218,9 +267,9 @@ a {
 .host-info a {
     background-color: #fff;
     color: #141318;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
-    padding: 4px 12px;
+    padding: 8px 24px;
     border-radius: 64px;
 }
 
@@ -232,13 +281,12 @@ a {
 }
 
 .host-more-info a {
-    color: #00EA4B;
+    color: #DAFF00;
     font-size: 12px;
     font-weight: 400;
 }
 
 .event-accordion {
-    background-color: #141318;
     color: #fff;
     border: none;
     outline: none;
@@ -247,7 +295,6 @@ a {
 
 .panel {
     padding: 2px 0 20px 5px;
-    background-color: #141318;
     overflow: hidden;
     position: relative;
 }
@@ -340,10 +387,13 @@ a {
     display: flex;
     flex-direction: row;
     gap: 12px;
-    align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.attendees-content.align-left {
+    justify-content: flex-start;
 }
 
 a[href^="http://maps.google.com/maps"] {
@@ -414,6 +464,7 @@ a[href^="https://maps.google.com/maps"] {
     display: flex;
     flex-direction: row;
     gap: 6px;
+    align-items: center;
 }
 
 .reviews-title {
@@ -489,13 +540,13 @@ a[href^="https://maps.google.com/maps"] {
 }
 
 #reviews-carousel .swiper-slide {
-    border: 1px solid #2F2D36;
     border-radius: 12px;
     padding: 16px;
     height: 145px;
     justify-content: center;
     display: flex;
     flex-direction: column;
+    background-color: #1F1E24;
 }
 
 #reviews-carousel.swiper-wrapper {
@@ -532,6 +583,14 @@ a[href^="https://maps.google.com/maps"] {
     color: #fff;
 }
 
+.reviews-header a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    text-align: right;
+    flex-grow: 1;
+}
+
 .location-header h3 {
     font-size: 14px;
     font-weight: 400;
@@ -539,7 +598,7 @@ a[href^="https://maps.google.com/maps"] {
 }
 
 .payment-container {
-    padding: 16px 0;
+    padding: 16px 0 85px 0;
 }
 
 .payment-content {
@@ -594,11 +653,10 @@ a[href^="https://maps.google.com/maps"] {
 }
 
 .attend-container {
-    padding: 12px 0;
+    padding: 16px 16px 24px 16px;
     display: flex;
     align-items: center;
-    background: #141318;
-    padding-left: 15px;
+    background: #26242E;
     border-top: 1px solid #2F2D36;
 }
 
@@ -624,7 +682,7 @@ a[href^="https://maps.google.com/maps"] {
 
 .attend-container a {
     color: #141318;
-    background-color: #00EA4B;
+    background-color: #DAFF00;
     font-size: 14px;
     font-weight: 700;
     padding: 8px 24px;
@@ -634,8 +692,8 @@ a[href^="https://maps.google.com/maps"] {
 .attend-sticky {
     position: fixed;
     bottom: 0;
-    width: calc(100% - 30px);
-    max-width: 738px;
+    width: 100%;
+    max-width: 767px;
     z-index: 99;
 }
 

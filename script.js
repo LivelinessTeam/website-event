@@ -80,12 +80,29 @@ $(document).ready(function () {
         textElement.appendChild(showMoreButton);
     };
 
-    function showLoader() {
-        document.getElementById('loader').style.display = 'flex';
+    function showShimmer() {
+        document.querySelectorAll('h1.content, h2.content, h3.content, img.content, p.content, div.content').forEach(element => {
+            element.classList.add('shimmer-effect');
+            if (element.tagName === 'DIV' && element.classList.contains('content')) {
+                element.style.position = 'relative';
+                element.querySelectorAll('*').forEach(child => {
+                    child.style.visibility = 'hidden'; // Hide the child elements
+                });
+            }
+        });
+        document.getElementById('attend-btn').style.display = 'none';
     }
 
-    function hideLoader() {
-        document.getElementById('loader').style.display = 'none';
+    function hideShimmer() {
+        document.querySelectorAll('h1.content, h2.content, h3.content, img.content, p.content, div.content').forEach(element => {
+            element.classList.remove('shimmer-effect');
+            if (element.tagName === 'DIV' && element.classList.contains('content')) {
+                element.querySelectorAll('*').forEach(child => {
+                    child.style.visibility = 'visible'; // Show the child elements
+                });
+            }
+        });
+        document.getElementById('attend-btn').style.display = 'block';
     }
 
     function makeApiRequest(url) {
@@ -110,14 +127,14 @@ $(document).ready(function () {
         return;
     }
 
-    showLoader();
+    showShimmer();
 
     const eventUrl = `https://prod-ts-liveliness-server.onrender.com/api/event/${product}`;
     const reviewsAttendeesUrl = `https://prod-ts-liveliness-server.onrender.com/api/event/getCompleteInfo/${product}`;
 
     Promise.all([makeApiRequest(eventUrl), makeApiRequest(reviewsAttendeesUrl)])
         .then(([eventResponse, reviewsAttendeesResponse]) => {
-            hideLoader();
+            hideShimmer();
 
             // Handle event data
             const eventData = eventResponse;
@@ -142,7 +159,6 @@ $(document).ready(function () {
 
             const formattedDate = `${formattedDateParts.weekday}, ${formattedDateParts.month} ${formattedDateParts.day} at ${formattedDateParts.time}`;
 
-            console.log(eventData)
             // Update DOM elements
             document.getElementById("event-title").textContent = eventData.data.title;
             document.getElementById("event-review").textContent = eventData.data.creator.reviewCount;
@@ -152,6 +168,7 @@ $(document).ready(function () {
             document.getElementById("event-location-map").textContent = eventData.data.trainingLocationString;
             document.getElementById("event-creator-name").textContent = eventData.data.creator.name;
             document.getElementById("event-description").textContent = eventData.data.description;
+            document.getElementById("get-app").setAttribute("href", eventData.data.link);
             const priceElement = document.getElementById("event-price");
             if (eventData.data.price === 0) {
                 priceElement.textContent = "Free";
@@ -163,8 +180,13 @@ $(document).ready(function () {
             document.getElementById("event-host-image").src = imageUrl;
             const imageUrlCover = eventData.data.coverPhotoUrl;
             const optionalPhotos = eventData.data.optionalPhotos;
+
             const imageContainer = document.getElementById('image-container');
             const carouselContainer = document.getElementById('main-carousel');
+
+            // const blurContainer = document.querySelector('.blur-container');
+            // blurContainer.style.setProperty('--blurred-background', `url(${imageUrlCover})`);
+
             imageContainer.innerHTML = '';
 
             const imagesHtml = [];
@@ -461,6 +483,13 @@ $(document).ready(function () {
             const attendeeContainer = document.getElementById('attendees-container');
             attendeeContainer.innerHTML = '';
             const limitedAttendees = attendees.slice(0, 8);
+
+            if (limitedAttendees.length < 4) {
+                attendeeContainer.classList.add('align-left');
+            } else {
+                attendeeContainer.classList.remove('align-left');
+            }
+
             limitedAttendees.forEach(attendee => {
                 const attendeeCardHtml = `
                         <div class="attendees-card">
@@ -528,12 +557,9 @@ $(document).ready(function () {
                     }
                 }
             });
-
-            // Remove 'hidden' class from elements
-            document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
         })
         .catch(error => {
-            hideLoader();
+            hideShimmer();
             // console.error('Error fetching data:', error);
         });
 });
