@@ -30,7 +30,7 @@ $(document).ready(function () {
     }
 
     function updateAttendeesCount(current, total) {
-        document.getElementById('total-attendees').textContent = `${current} / ${total}`;
+        document.getElementById('total-attendees').textContent = `${current}`;
     }
 
     // Sticky header
