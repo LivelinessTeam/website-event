@@ -524,7 +524,7 @@ $(document).ready(function () {
             const attendeeContainer = document.getElementById('attendees-container');
             attendeeContainer.innerHTML = '';
 
-            const maxVisibleMembers = 6;
+            const maxVisibleMembers = 2;
             const limitedAttendees = attendees.slice(0, maxVisibleMembers);
 
             if (limitedAttendees.length < 4) {
