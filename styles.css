@@ -111,13 +111,6 @@ div.content.shimmer-effect {
     background-color: #26242E;
 }
 
-.sticky {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    background-color: 141318;
-}
-
 .header h2 {
     margin: 0;
     color: #fff;
@@ -152,7 +145,6 @@ div.content.shimmer-effect {
 
 .event-info {
     padding: 16px;
-    margin-top: 69px;
 }
 
 /* #main-carousel .owl-stage-outer {
@@ -710,11 +702,9 @@ a[href^="https://maps.google.com/maps"] {
 }
 
 #myHeader {
-    position: fixed;
-    top: 0;
-    width: 768px;
+    max-width: 768px;
+    width: 100%;
     transition: top 0.3s;
-    z-index: 1000;
 }
 
 .sticky {
