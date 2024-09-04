@@ -116,7 +116,7 @@ $(document).ready(function () {
         const membersContainer = document.querySelector('.members-content');
         membersContainer.innerHTML = '';
 
-        const maxVisibleMembers = 6;
+        const maxVisibleMembers = 2;
         const visibleMembers = members.slice(0, maxVisibleMembers);
         const hiddenMembersCount = members.length - visibleMembers.length;
 
@@ -524,7 +524,7 @@ $(document).ready(function () {
             const attendeeContainer = document.getElementById('attendees-container');
             attendeeContainer.innerHTML = '';
 
-            const maxVisibleMembers = 2;
+            const maxVisibleMembers = 6;
             const limitedAttendees = attendees.slice(0, maxVisibleMembers);
 
             if (limitedAttendees.length < 4) {
