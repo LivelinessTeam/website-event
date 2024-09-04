@@ -33,13 +33,6 @@ $(document).ready(function () {
         document.getElementById('total-attendees').textContent = `${current}`;
     }
 
-    function createMetaPropertyTag(property, content) {
-        var meta = document.createElement('meta');
-        meta.setAttribute('property', property);
-        meta.content = content;
-        document.head.appendChild(meta);
-    }
-
     // Sticky header
     window.onscroll = function () { hideOnScroll() };
 
@@ -172,11 +165,6 @@ $(document).ready(function () {
             };
 
             const formattedDate = `${formattedDateParts.weekday}, ${formattedDateParts.month} ${formattedDateParts.day} at ${formattedDateParts.time}`;
-
-            // Update meta tags
-            createMetaPropertyTag('og:title', eventData.data.title);
-            createMetaPropertyTag('og:description', eventData.data.description);
-            createMetaPropertyTag('og:image', eventData.data.coverPhotoUrl);
 
             // Update DOM elements
             document.getElementById("more-from-coach").href = `https://coachprofile.linmo.app/?userId=${eventData.data.creator.uid}`;
