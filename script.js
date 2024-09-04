@@ -30,21 +30,27 @@ $(document).ready(function () {
     }
 
     function updateAttendeesCount(current, total) {
-        document.getElementById('total-attendees').textContent = `${current}`;
+        document.getElementById('total-attendees').textContent = `${current} / ${total}`;
     }
 
-    // Sticky header
-    window.onscroll = function () { myFunction() };
+    window.onscroll = function () { hideOnScroll() };
 
     var header = document.getElementById("myHeader");
     var sticky = header.offsetTop;
+    var lastScrollY = window.scrollY;
 
-    function myFunction() {
-        if (window.scrollY > sticky) {
-            header.classList.add("sticky");
+    function hideOnScroll() {
+        var currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > sticky) {
+            // Scroll Down
+            header.style.top = "-100px";
         } else {
-            header.classList.remove("sticky");
+            // Scroll Up
+            header.style.top = "0";
         }
+
+        lastScrollY = currentScrollY;
     }
 
     // Accordion
@@ -160,6 +166,7 @@ $(document).ready(function () {
             const formattedDate = `${formattedDateParts.weekday}, ${formattedDateParts.month} ${formattedDateParts.day} at ${formattedDateParts.time}`;
 
             // Update DOM elements
+            document.getElementById("more-from-coach").href = `https://coachprofile.linmo.app/?userId=${eventData.data.creator.uid}`;
             document.getElementById("event-title").textContent = eventData.data.title;
             document.getElementById("event-review").textContent = eventData.data.creator.reviewCount;
             document.getElementById("rating").textContent = eventData.data.creator.reviewCount;
@@ -168,15 +175,13 @@ $(document).ready(function () {
             document.getElementById("event-location-map").textContent = eventData.data.trainingLocationString;
             document.getElementById("event-creator-name").textContent = eventData.data.creator.name;
             document.getElementById("event-description").textContent = eventData.data.description;
-            document.getElementById("get-app").setAttribute("href", eventData.data.link);
-            document.getElementById("attend-btn").setAttribute("href", eventData.data.link);
             const priceElement = document.getElementById("event-price");
             if (eventData.data.price === 0) {
                 priceElement.textContent = "Free";
             } else {
                 priceElement.textContent = `${eventData.data.priceCurrency} ${eventData.data.price}`;
             }
-            document.getElementById("events-remaining-seats").textContent = `${eventData.data.participants.length} going`;
+            document.getElementById("events-remaining-seats").textContent = `${eventData.data.participantsLimit - eventData.data.participants.length} spots left`;
             const imageUrl = eventData.data.creator.mainProfilePhoto;
             document.getElementById("event-host-image").src = imageUrl;
             const imageUrlCover = eventData.data.coverPhotoUrl;
