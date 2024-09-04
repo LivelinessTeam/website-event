@@ -753,3 +753,7 @@ a[href^="https://maps.google.com/maps"] {
     border-radius: 50%;
     overflow: hidden;
 }
+
+.member-circle img {
+    width: 100%;
+}
