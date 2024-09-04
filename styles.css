@@ -712,7 +712,7 @@ a[href^="https://maps.google.com/maps"] {
 #myHeader {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 768px;
     transition: top 0.3s;
     z-index: 1000;
 }
