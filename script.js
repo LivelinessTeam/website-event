@@ -116,7 +116,7 @@ $(document).ready(function () {
         const membersContainer = document.querySelector('.members-content');
         membersContainer.innerHTML = '';
 
-        const maxVisibleMembers = 2;
+        const maxVisibleMembers = 6;
         const visibleMembers = members.slice(0, maxVisibleMembers);
         const hiddenMembersCount = members.length - visibleMembers.length;
 
