@@ -152,6 +152,7 @@ div.content.shimmer-effect {
 
 .event-info {
     padding: 16px;
+    margin-top: 69px;
 }
 
 /* #main-carousel .owl-stage-outer {
@@ -325,7 +326,7 @@ div.content.shimmer-effect {
 }
 
 .panel p {
-    font-size: 14px;
+    font-size: 16px;
     color: #DADADA;
     font-weight: 400;
     line-height: 22px;
@@ -706,4 +707,19 @@ a[href^="https://maps.google.com/maps"] {
 
 #googleMap div {
     border-radius: 12px;
+}
+
+#myHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s;
+    z-index: 1000;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
