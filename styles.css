@@ -125,7 +125,7 @@ div.content.shimmer-effect {
     font-weight: 600;
 }
 
-.header button {
+.header a {
     font-size: 16px;
     font-style: 600;
     border: 1px solid #43404F;
@@ -321,7 +321,7 @@ div.content.shimmer-effect {
 #myHeader {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 768px;
     transition: top 0.3s;
     z-index: 1000;
 }
