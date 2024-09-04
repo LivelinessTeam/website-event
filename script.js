@@ -112,6 +112,37 @@ $(document).ready(function () {
         document.getElementById('attend-btn').style.display = 'block';
     }
 
+    function displayMembers(members) {
+        const membersContainer = document.querySelector('.members-content');
+        membersContainer.innerHTML = '';
+
+        const maxVisibleMembers = 6;
+        const visibleMembers = members.slice(0, maxVisibleMembers);
+        const hiddenMembersCount = members.length - visibleMembers.length;
+
+        visibleMembers.forEach(member => {
+            const memberCircle = document.createElement('div');
+            memberCircle.className = 'member-circle';
+
+            memberCircle.innerHTML = `
+            <img src="${member.mainProfilePhoto}" alt="${member.name}">
+        `;
+
+            membersContainer.appendChild(memberCircle);
+        });
+
+        if (hiddenMembersCount > 0) {
+            const memberPlusCircle = document.createElement('div');
+            memberPlusCircle.className = 'member-circle member-plus';
+
+            memberPlusCircle.innerHTML = `
+            <h2>+${hiddenMembersCount}</h2>
+        `;
+
+            membersContainer.appendChild(memberPlusCircle);
+        }
+    }
+
     function makeApiRequest(url) {
         return $.ajax({
             url: url,
@@ -489,9 +520,12 @@ $(document).ready(function () {
 
             // Handle Attendees
             const attendees = reviewsAttendeesResponse.data.participants;
+            displayMembers(attendees);
             const attendeeContainer = document.getElementById('attendees-container');
             attendeeContainer.innerHTML = '';
-            const limitedAttendees = attendees.slice(0, 8);
+
+            const maxVisibleMembers = 6;
+            const limitedAttendees = attendees.slice(0, maxVisibleMembers);
 
             if (limitedAttendees.length < 4) {
                 attendeeContainer.classList.add('align-left');
