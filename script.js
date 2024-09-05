@@ -565,14 +565,17 @@ $(document).ready(function () {
             const reviews = reviewsAttendeesResponse.data.reviews;
             const reviewsContainer = document.getElementById('reviews-carousel');
             reviewsContainer.innerHTML = '';
-            console.log(reviews)
-            if (reviews.length === 0) {
+
+            const filteredReviews = reviews.filter(review => review.review && review.review.trim() !== '');
+
+            if (filteredReviews.length === 0) {
                 reviewsContainer.innerHTML = '<p class="upcoming-events">No reviews</p>';
             } else {
-                const filteredReviews = reviews.filter(review => review.review && review.review.trim() !== '');
+                let reviewsHtml = '';
+
                 filteredReviews.forEach(review => {
                     const reviewDate = formatRelativeTime(review.createdAt);
-                    const reviewCardHtml = `
+                    reviewsHtml += `
                     <div class="swiper-slide">
                         <p>${review.review}</p>
                         <div class="host-reviews-info">
@@ -585,9 +588,9 @@ $(document).ready(function () {
                             </div>
                         </div>
                     </div>`;
-                    reviewsContainer.innerHTML += reviewCardHtml;
                 });
 
+                reviewsContainer.innerHTML = reviewsHtml;
                 updateReviewCount(reviews.length);
 
                 var swiper = new Swiper(".mySwiper", {
