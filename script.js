@@ -567,7 +567,7 @@ $(document).ready(function () {
             reviewsContainer.innerHTML = '';
 
             const filteredReviews = reviews.filter(review => review.review && review.review.trim() !== '');
-
+            console.log(filteredReviews)
             if (filteredReviews.length === 0) {
                 reviewsContainer.innerHTML = '<p class="upcoming-events">No reviews</p>';
             } else {
