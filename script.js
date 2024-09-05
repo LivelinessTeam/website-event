@@ -565,10 +565,14 @@ $(document).ready(function () {
             const reviews = reviewsAttendeesResponse.data.reviews;
             const reviewsContainer = document.getElementById('reviews-carousel');
             reviewsContainer.innerHTML = '';
-            const filteredReviews = reviews.filter(review => review.review && review.review.trim() !== '');
-            filteredReviews.forEach(review => {
-                const reviewDate = formatRelativeTime(review.createdAt);
-                const reviewCardHtml = `
+            console.log(reviews)
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = '<p class="upcoming-events">No reviews</p>';
+            } else {
+                const filteredReviews = reviews.filter(review => review.review && review.review.trim() !== '');
+                filteredReviews.forEach(review => {
+                    const reviewDate = formatRelativeTime(review.createdAt);
+                    const reviewCardHtml = `
                     <div class="swiper-slide">
                         <p>${review.review}</p>
                         <div class="host-reviews-info">
@@ -581,25 +585,26 @@ $(document).ready(function () {
                             </div>
                         </div>
                     </div>`;
-                reviewsContainer.innerHTML += reviewCardHtml;
-            });
+                    reviewsContainer.innerHTML += reviewCardHtml;
+                });
 
-            updateReviewCount(reviews.length);
+                updateReviewCount(reviews.length);
 
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 'auto',
-                spaceBetween: 10,
-                on: {
-                    // On initialization complete, adjust the width of the last slide
-                    init: function () {
-                        adjustLastSlideWidth();
-                    },
-                    // On slide change, ensure the last slide is adjusted (in case slides are dynamically added or removed)
-                    slideChange: function () {
-                        adjustLastSlideWidth();
+                var swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 'auto',
+                    spaceBetween: 10,
+                    on: {
+                        // On initialization complete, adjust the width of the last slide
+                        init: function () {
+                            adjustLastSlideWidth();
+                        },
+                        // On slide change, ensure the last slide is adjusted (in case slides are dynamically added or removed)
+                        slideChange: function () {
+                            adjustLastSlideWidth();
+                        }
                     }
-                }
-            });
+                });
+            }
         })
         .catch(error => {
             hideShimmer();
