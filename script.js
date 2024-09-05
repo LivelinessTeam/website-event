@@ -157,7 +157,7 @@ $(document).ready(function () {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const product = urlParams.get("userId");
+    const product = urlParams.get("eventId");
 
     if (!product) {
         document.getElementById('main-content').style.display = 'none';
