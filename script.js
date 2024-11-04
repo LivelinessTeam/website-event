@@ -213,7 +213,15 @@ $(document).ready(function () {
             if (eventData.data.price === 0) {
                 priceElement.textContent = "Free";
             } else {
+                if(eventData.data.priceCurrency === 'USD') {
                 priceElement.textContent = `From ${eventData.data.priceCurrency} ${eventData.data.price}`;
+                }
+                else if(eventData.data.priceCurrency === 'EUR') {
+                    priceElement.textContent = `From  € ${eventData.data.price}`;
+                }
+                else{ 
+                    priceElement.textContent = `From ${eventData.data.priceCurrency} ${eventData.data.price}`;
+                }
             }
             document.getElementById("events-remaining-seats").textContent = `${eventData.data.participants.length} going`;
             const imageUrl = eventData.data.creator.mainProfilePhoto;
