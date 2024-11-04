@@ -521,6 +521,29 @@ $(document).ready(function () {
             // Handle Attendees
             const attendees = reviewsAttendeesResponse.data.participants;
             displayMembers(attendees);
+            const attendeeContainer = document.getElementById('attendees-container');
+            attendeeContainer.innerHTML = '';
+
+            const maxVisibleMembers = 6;
+            const limitedAttendees = attendees.slice(0, maxVisibleMembers);
+
+            if (limitedAttendees.length < 4) {
+                attendeeContainer.classList.add('align-left');
+            } else {
+                attendeeContainer.classList.remove('align-left');
+            }
+
+            limitedAttendees.forEach(attendee => {
+                const attendeeCardHtml = `
+                        <div class="attendees-card">
+                            <div class="attendees-circle">
+                                <img src="${attendee.mainProfilePhoto}" alt="${attendee.name}">
+                            </div>
+                            <h3>${attendee.name}</h3>
+                        </div>
+                `;
+                attendeeContainer.innerHTML += attendeeCardHtml;
+            });
 
             const currentAttendees = attendees.length;
             const totalAttendees = eventData.data.participantsLimit;
