@@ -213,7 +213,7 @@ $(document).ready(function () {
             if (eventData.data.price === 0) {
                 priceElement.textContent = "Free";
             } else {
-                priceElement.textContent = `${eventData.data.priceCurrency} ${eventData.data.price}`;
+                priceElement.textContent = `From ${eventData.data.priceCurrency} ${eventData.data.price}`;
             }
             document.getElementById("events-remaining-seats").textContent = `${eventData.data.participants.length} going`;
             const imageUrl = eventData.data.creator.mainProfilePhoto;
